@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.urls import path, include
+from eduprod import views as eduprod_views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include(('users.urls', 'users'), namespace='users')),
     path('eduprod/', include(('eduprod.urls', 'eduprod'), namespace='eduprod')),
     path('accounts/login/', include('users.urls')),
+    path('', eduprod_views.index, name='home'),  # Use the index view from educprod as the homepage
 ]
+
